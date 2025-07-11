@@ -4,13 +4,13 @@ import Hero from "../components/Hero";
 import Cryptotable from "../components/Cryptotable";
 import { useState } from "react";
 import { useCryptoData } from "../context/CryptoDataContext";
-const Features = () => {
+const Features_tmp = () => {
     const [searchQuery, setSearch] = useState("");
 
-  const handleSearch = (query) => {
-    setSearch(query);
-  };
-  const { coinData, country, setCountry, getURL } = useCryptoData();
+    const handleSearch = (query) => {
+      setSearch(query);
+    };
+    const { coinData, country, setCountry, getURL } = useCryptoData();
   return (
     <div>
     <Navbar setCountry={setCountry} />
@@ -27,4 +27,4 @@ const Features = () => {
   )
 }
 
-export default Features
+export default Features_tmp
