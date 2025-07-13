@@ -18,7 +18,7 @@ const Info = () => {
   return (
     <div>
       <Navbar setCountry={setCountry} />
-      <div className="bg-[#090040] w-full min-h-screen space-y-2 md:p-3 lg:p-4">
+      <div className="bg-gradient-to-r from-[#1a0033] to-[#2d004d] w-full min-h-screen space-y-2 md:p-3 lg:p-4">
         <Details getURL={getURL} country={country} coinData={coinData}/>
       </div>
     </div>

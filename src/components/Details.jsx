@@ -50,8 +50,10 @@ const Details = ({ getURL, country, coinData }) => {
           {
             label: "Price (USD)",
             data: data.prices.map((price) => price[1]),
-            borderColor: "#fff",
-            backgroundColor: "rgba(255,255,255,0.1)",
+            borderColor: "#ffd700",
+            backgroundColor: "rgba(230,204,255,0.1)",
+            pointBackgroundColor: "#ffd700",
+            pointBorderColor: "#ffd700",
             tension: 0.2,
           },
         ],
@@ -62,52 +64,43 @@ const Details = ({ getURL, country, coinData }) => {
   }, [id]);
 
   return (
-    <div className=" h-[1400px] mx-auto rounded-lg w-[450px] md:w-[750px] lg:w-[850px] xl:w-[1000px]">
+    <div className="mx-auto w-full max-w-2xl min-h-screen">
       <div className="flex flex-col items-center justify-center pt-24">
         <span>
           <img src={coin?.image} alt="" className="w-[120px] h-[120px]" />
         </span>
-        <span className="text-white font-bold text-4xl">
+        <span className="text-[#ffd700] font-bold text-4xl">
           {coin?.name} - ({coin?.symbol.toUpperCase()})
         </span>
       </div>
       <div className="flex flex-col justify-center items-center w-full">
-        <div className="bg-[#FFCC00] rounded-xl shadow-lg p-8 w-full max-w-2xl mt-8">
-          <h3 className="text-[#471396] text-2xl font-semibold mb-4 text-center">
+        <div className="bg-gradient-to-r from-[#1a0033] to-[#2d004d] rounded-xl shadow-lg p-8 w-full max-w-2xl mt-8 border border-[#4a0080]">
+          <h3 className="text-[#ffd700] text-2xl font-semibold mb-4 text-center">
             7 Day Price Chart
           </h3>
           {loading ? (
-            <div className="text-[#471396] text-center py-8">
+            <div className="text-[#ffd700] text-center py-8">
               Loading chart...
             </div>
           ) : chartData ? (
             <Line
-              data={{
-                ...chartData,
-                datasets: chartData.datasets.map((ds) => ({
-                  ...ds,
-                  borderColor: "#471396",
-                  backgroundColor: "rgba(71,19,150,0.1)",
-                  pointBackgroundColor: "#471396",
-                  pointBorderColor: "#471396",
-                })),
-              }}
+              data={chartData}
               options={{
                 plugins: {
-                  legend: { labels: { color: "#471396" } },
+                  legend: { labels: { color: "#ffd700" } },
                 },
                 scales: {
                   x: {
-                    ticks: { color: "#471396" },
-                    grid: { color: "rgba(71,19,150,0.1)" },
+                    ticks: { color: "#e6ccff" },
+                    grid: { color: "rgba(230,204,255,0.1)" },
                   },
                   y: {
-                    ticks: { color: "#471396" },
-                    grid: { color: "rgba(71,19,150,0.1)" },
+                    ticks: { color: "#e6ccff" },
+                    grid: { color: "rgba(230,204,255,0.1)" },
                   },
                 },
                 layout: {
-                  backgroundColor: "#FFCC00",
+                  backgroundColor: "#1a0033",
                 },
               }}
             />
@@ -119,50 +112,53 @@ const Details = ({ getURL, country, coinData }) => {
         </div>
       </div>
       <div className="flex justify-center w-full ">
-        <div className=" rounded-xl shadow-lg w-full max-w-2xl p-8 mt-4 bg-[#471396]">
+        <div className="rounded-xl shadow-lg w-full max-w-2xl p-8 mt-4 bg-gradient-to-r from-[#2d004d] to-[#4a0080] border border-[#4a0080]">
           <div className="flex flex-col gap-4">
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <ul className="text-xl text-[#ffd700] flex justify-between gap-20 px-4 my-4">
               <li>Crypto Market rank</li>
               <li>{coin?.market_cap_rank}</li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
+            <ul className="text-xl text-[#e6ccff] flex justify-between gap-20 px-4 my-4">
               <li>Current Price</li>
               <li>
                 {getCurrencySymbol(country)}
                 {coin?.current_price}
               </li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
+            <ul className="text-xl text-[#e6ccff] flex justify-between gap-20 px-4 my-4">
               <li>Market Cap</li>
               <li>
                 {getCurrencySymbol(country)}
                 {coin?.market_cap}
               </li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
+            <ul className="text-xl text-[#e6ccff] flex justify-between gap-20 px-4 my-4">
               <li>24 Hour Change</li>
-              <li> {getCurrencySymbol(country)}{coin?.price_change_percentage_24h}%</li>
+              <li>
+                {getCurrencySymbol(country)}
+                {coin?.price_change_percentage_24h}%
+              </li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
+            <ul className="text-xl text-[#e6ccff] flex justify-between gap-20 px-4 my-4">
               <li>24 Hour High</li>
               <li>
                 {getCurrencySymbol(country)}
                 {coin?.high_24h}
               </li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
-            <ul className="text-xl text-white flex justify-between gap-20 px-4 my-4">
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
+            <ul className="text-xl text-[#e6ccff] flex justify-between gap-20 px-4 my-4">
               <li>24 Hour Low</li>
               <li>
                 {getCurrencySymbol(country)}
                 {coin?.low_24h}
               </li>
             </ul>
-            <hr className="w-full h-[2px] bg-gray-200 mb-2" />
+            <hr className="w-full h-[2px] bg-[#4a0080] mb-2" />
           </div>
         </div>
       </div>

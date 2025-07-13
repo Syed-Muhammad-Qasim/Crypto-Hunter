@@ -10,7 +10,7 @@ import Blog from "./pages/Blog"
 function App() {
  return(
  <CryptoDataProvider>
-     <div className="bg-black w-full min-h-screen">
+     <div className=" min-h-screen">
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/features" element={<Features_tmp />} />
